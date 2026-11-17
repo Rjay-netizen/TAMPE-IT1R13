@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Study — Totoo AI</title>
+<meta name="description" content="Background, objectives, scope and limitations of the study on AI-based fake news and deepfake detection in Filipino digital content.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html" aria-label="Totoo AI home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#F0B429" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3l7 3v6c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6l7-3z"/>
+          <path d="M9 12l2 2 4-4"/>
+        </svg>
+      </span>
+      <span class="brand-text">TOTOO<span>AI</span></span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="detector.html">Detector</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="about.html" aria-current="page">The Study</a>
+      <a href="references.html">References</a>
+    </nav>
+    <a class="btn btn-primary btn-sm nav-cta" href="detector.html">Try the detector</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav"><span></span></button>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-head">
+    <div class="wrap">
+      <span class="eyebrow">Research documentation</span>
+      <h1>Development of an AI-Based System for Fake News and Deepfake Detection in <span class="serif">Filipino</span> Digital Content.</h1>
+      <p>The full rationale, research questions, scope and acknowledged limits behind the Totoo AI prototype.</p>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="wrap">
+      <div class="info-grid">
+        <div class="info-item"><span>Researchers</span><b>Ledesma, Trishia G.<br>Fellesco, Justin Ace P.<br>Tampe, Rhian Jay</b></div>
+        <div class="info-item"><span>Group</span><b>Group 10</b></div>
+        <div class="info-item"><span>Focus</span><b>Filipino · Taglish · English digital content</b></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="wrap-narrow prose">
+
+      <div class="callout">
+        <p><strong>Prototype disclosure.</strong> This website is the functional interface for the system proposed in the study. The detection layer implements the study's signal families as transparent, on-device heuristics. It is not a trained DistilBERT, CNN-LSTM or multimodal transformer — those are the study's proposed production models. Read every result as a demonstration of the workflow.</p>
+      </div>
+
+      <h2>1. Background of the study</h2>
+      <p>
+        Artificial intelligence and digital communication have changed how information is made,
+        shared and used worldwide. Social media made sharing easier — and made false information
+        travel faster. One emerging form is the <strong>deepfake</strong>: video or audio generated
+        with AI so that real people appear to do or say things they never did. In many countries,
+        fake videos and fake news have moved from a political nuisance into a national-security
+        concern because they can break trust, distort elections, and destabilise communities.
+      </p>
+      <p>
+        In the Philippines — a country with very high social media usage — the effects are serious.
+        Most conversation happens in Tagalog, regional languages, or Taglish, the mix of Tagalog
+        and English. Verification tools built in the West often fail here because of local
+        expressions, phrasing, and code-switching. As deepfake tools get cheaper, bad actors use
+        them against individuals, journalists, and government institutions. Fact-checking has not
+        kept pace with how fast manipulated content spreads on Facebook, TikTok and X.
+      </p>
+      <p>
+        Most published detection research is trained on English or European data. There is a
+        clear gap in applying advanced models to the complicated, mixed language used online in
+        the Philippines — leaving Filipinos exposed to increasingly sophisticated deception. This
+        study sets out to design, build and evaluate an AI system tailored to that environment,
+        combining language models and computer vision to identify fake videos and false messages
+        quickly and accurately, so that fact-checkers can protect the integrity of public
+        conversation.
+      </p>
+
+      <h2>2. Statement of the problem</h2>
+      <p>
+        The growth of AI-generated deepfakes and false information threatens online safety and
+        political discourse in the Philippines. Despite heavy media use, local fact-checking and
+        deepfake detection remain inadequate: most systems are built on foreign languages and
+        datasets, and they break down on Taglish and regional languages. Bad actors exploit this
+        weakness against individuals, reporters and government groups, leaving fact-checkers
+        without the tools to stop fast-spreading content on Facebook, TikTok and X.
+      </p>
+      <p>Specifically, the study answers these questions:</p>
+      <ol>
+        <li>What are the technical and linguistic features of the deepfakes and false news that are common on Philippine social media platforms like Facebook, TikTok and X?</li>
+        <li>How can natural language processing models be trained to correctly detect false information written in Tagalog, Taglish and selected local languages?</li>
+        <li>How well does combining computer vision with locally adapted language models work in detecting manipulated videos, compared with Western-built models?</li>
+        <li>How well does the developed system perform in terms of accuracy, precision, recall and processing speed when tested on a collection of Philippine online content?</li>
+        <li>How can the system help fact-checkers and information regulators in the Philippines do their work better and faster?</li>
+      </ol>
+
+      <h2>3. Objectives</h2>
+      <h3>General objective</h3>
+      <p>
+        To develop an AI-based system that can detect fake news and deepfake content in Filipino
+        digital media, helping identify misleading information and improve the reliability of
+        content shared on social media platforms.
+      </p>
+      <h3>Specific objectives</h3>
+      <ol>
+        <li>Identify the common features of fake news and deepfake content shared on social media platforms in the Philippines.</li>
+        <li>Develop an AI-based system that can detect false information written in Filipino, Taglish and selected local languages.</li>
+        <li>Integrate natural language processing and computer vision to analyse text, images and videos.</li>
+        <li>Evaluate the system's performance in terms of accuracy, precision, recall and processing speed.</li>
+        <li>Determine how the system can help users and fact-checkers identify misleading information more efficiently.</li>
+      </ol>
+
+      <h2>4. Scope</h2>
+      <p>The system focuses on identifying and detecting fake news and deepfake content in Filipino digital media, analysing text, images and videos shared through digital platforms. Specifically:</p>
+      <ul>
+        <li><strong>Fake news detection</strong> — Filipino and English text content, including news articles, headlines and social media posts, screened for misleading, fabricated or potentially false information.</li>
+        <li><strong>Deepfake detection</strong> — uploaded images and videos examined for signs of AI generation or digital manipulation, such as unnatural facial movement and visual inconsistency.</li>
+        <li><strong>Filipino language support</strong> — primarily Filipino and English, including common expressions used in Philippine digital communication.</li>
+        <li><strong>AI-based analysis</strong> — detection results generated through AI and machine-learning techniques.</li>
+        <li><strong>User-friendly interface</strong> — a simple interface where users upload images, videos or text and receive a result indicating whether content is likely authentic, fake, or potentially manipulated.</li>
+        <li><strong>Detection results</strong> — a classification result and a confidence score indicating the likelihood that submitted content contains misinformation or deepfake manipulation.</li>
+      </ul>
+
+      <h2>5. Limitations</h2>
+      <p>The study acknowledges conditions that affect accuracy and performance:</p>
+      <ol>
+        <li><strong>Limited dataset availability</strong> — accuracy depends on the quality, quantity and diversity of training and testing data; limited Filipino fake-news and deepfake datasets constrain performance.</li>
+        <li><strong>Language limitations</strong> — regional languages, dialects, slang, mixed-language expressions and unfamiliar terms may be misread.</li>
+        <li><strong>Detection accuracy</strong> — sophisticated manipulation may go undetected, while legitimate content may occasionally be flagged.</li>
+        <li><strong>Limited media formats</strong> — only selected text, image and video formats are supported; live streams, audio recordings and real-time posts are out of scope.</li>
+        <li><strong>Dependence on uploaded content</strong> — the system analyses only what users submit; it does not monitor platforms automatically.</li>
+        <li><strong>Evolving AI technology</strong> — newly developed manipulation methods may not be recognised without regular dataset and model updates.</li>
+        <li><strong>Internet and technical requirements</strong> — some features may need connectivity, sufficient processing power and compatible devices.</li>
+        <li><strong>Not a substitute for fact-checking</strong> — the system assists; it does not guarantee truthfulness. Users must still verify through credible sources and fact-checking organisations.</li>
+      </ol>
+
+      <div class="callout">
+        <p><strong>Status.</strong> The study positions the system as a supplementary verification tool, not a replacement for professional fact-checking. Totoo AI adopts the same stance throughout its interface.</p>
+      </div>
+
+      <h2>6. Significance of the study</h2>
+      <ul>
+        <li><strong>Social media users</strong> — helps them identify fake news and deepfake content before believing or sharing it.</li>
+        <li><strong>Students</strong> — raises awareness of AI-generated content and encourages checking reliability before academic use.</li>
+        <li><strong>Teachers</strong> — serves as a learning resource on misinformation, deepfakes and responsible digital media use.</li>
+        <li><strong>Fact-checkers and journalists</strong> — provides an additional triage tool for spotting suspicious digital content more efficiently.</li>
+        <li><strong>Future researchers and developers</strong> — offers a reference for improving AI detection systems designed for Filipino languages and content.</li>
+      </ul>
+
+      <h2>7. How this prototype maps to the objectives</h2>
+      <table style="width:100%;border-collapse:collapse;font-size:.9rem;margin:22px 0">
+        <thead>
+          <tr>
+            <th style="text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">Objective</th>
+            <th style="text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">Implemented as</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:12px;border-bottom:1px solid var(--line);color:var(--ink-soft)">Multi-modal analysis</td>
+            <td style="padding:12px;border-bottom:1px solid var(--line);color:var(--ink-soft)">Text, image and video tabs share one result schema and one risk scale.</td>
+          </tr>
+          <tr>
+            <td style="padding:12px;border-bottom:1px solid var(--line);color:var(--ink-soft)">Filipino language support</td>
+            <td style="padding:12px;border-bottom:1px solid var(--line);color:var(--ink-soft)">Lexicons and hedging rules written for Filipino, Taglish and English.</td>
+          </tr>
+          <tr>
+            <td style="padding:12px;border-bottom:1px solid var(--line);color:var(--ink-soft)">Explainable confidence</td>
+            <td style="padding:12px;border-bottom:1px solid var(--line);color:var(--ink-soft)">A 0–100 risk score with per-signal values and flagged passages.</td>
+          </tr>
+          <tr>
+            <td style="padding:12px;border-bottom:1px solid var(--line);color:var(--ink-soft)">Evaluation</td>
+            <td style="padding:12px;border-bottom:1px solid var(--line);color:var(--ink-soft)">Local scan history, verdict distribution, and published benchmarks side by side.</td>
+          </tr>
+          <tr>
+            <td style="padding:12px;color:var(--ink-soft)">Fact-checker workflow</td>
+            <td style="padding:12px;color:var(--ink-soft)">Every result links to VERA Files, Tsek.ph, Rappler, PCIJ and Google Fact Check.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>8. Technology stack</h2>
+      <p>
+        The prototype is deliberately dependency-free: HTML, CSS and vanilla JavaScript, with no
+        build step and no server-side processing. Text and media are analysed in the browser, and
+        scan history is stored in <code>localStorage</code>. This keeps the demonstration
+        reproducible on any laptop during a defense, and keeps submitted content private. The
+        <code>TotooEngine</code> module exposes one function per modality, so a hosted transformer
+        model or a CNN-based deepfake detector can replace the heuristic layer without touching
+        the interface.
+      </p>
+
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="wrap">
+      <div class="cta-band reveal">
+        <div>
+          <h2>See the study's scope in action.</h2>
+          <p>Run a Taglish viral post, a screenshot, or a short clip through the detector.</p>
+        </div>
+        <a class="btn btn-primary" href="detector.html">Open the detector</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="index.html" aria-label="Totoo AI home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#F0B429" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3l7 3v6c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6l7-3z"/>
+              <path d="M9 12l2 2 4-4"/>
+            </svg>
+          </span>
+          <span class="brand-text">TOTOO<span>AI</span></span>
+        </a>
+        <p class="footer-about">
+          A research prototype for detecting fake news and deepfake content in Filipino
+          digital media. Built as a supplementary verification aid — never a replacement
+          for professional fact-checking.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="detector.html">Detector</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="index.html">Overview</a>
+      </div>
+      <div class="footer-col">
+        <h4>Research</h4>
+        <a href="about.html">The study</a>
+        <a href="references.html">References</a>
+        <a href="https://tsek.ph/" target="_blank" rel="noopener">Tsek.ph ↗</a>
+      </div>
+    </div>
+    <div class="footer-base">
+      <span>© <span data-year>2026</span> Totoo AI · Group 10 — Ledesma, Fellesco, Tampe</span>
+      <span class="proto">Heuristic prototype · Not a substitute for fact-checking</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

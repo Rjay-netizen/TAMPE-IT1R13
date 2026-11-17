@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Detector — Totoo AI</title>
+<meta name="description" content="Analyse Filipino text, images and videos for fake-news and deepfake indicators. Every verdict comes with a risk score and the signals behind it.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html" aria-label="Totoo AI home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#F0B429" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3l7 3v6c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6l7-3z"/>
+          <path d="M9 12l2 2 4-4"/>
+        </svg>
+      </span>
+      <span class="brand-text">TOTOO<span>AI</span></span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="detector.html" aria-current="page">Detector</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="about.html">The Study</a>
+      <a href="references.html">References</a>
+    </nav>
+    <a class="btn btn-primary btn-sm nav-cta" href="dashboard.html">Scan history</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav"><span></span></button>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-head">
+    <div class="wrap">
+      <span class="eyebrow">Detection console</span>
+      <h1>Check the content <span class="serif">before</span> you believe it.</h1>
+      <p>Paste a post or upload a file. Totoo AI scores six signal families, shows the passages that triggered, and tells you what to verify next.</p>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="wrap">
+      <div class="detector-grid">
+
+        <!-- ---------------- INPUT ---------------- -->
+        <section class="panel">
+          <div class="panel-head">
+            <h2>Content to analyse</h2>
+            <span class="sub">On-device · nothing uploaded</span>
+          </div>
+          <div class="panel-body">
+
+            <div class="tabs" role="tablist" aria-label="Content type">
+              <button class="tab active" role="tab" aria-selected="true" aria-controls="panel-text" data-tab="text" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h10M4 18h13"/></svg>
+                Text
+              </button>
+              <button class="tab" role="tab" aria-selected="false" aria-controls="panel-image" data-tab="image" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 16l-5-5-7 9"/></svg>
+                Image
+              </button>
+              <button class="tab" role="tab" aria-selected="false" aria-controls="panel-video" data-tab="video" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9.5l5 2.5-5 2.5z"/></svg>
+                Video
+              </button>
+            </div>
+
+            <!-- TEXT -->
+            <div class="tab-panel active" id="panel-text" data-panel="text" role="tabpanel">
+              <div class="field-label">
+                <span>Post, headline, caption or message</span>
+                <span id="charCount">0 chars</span>
+              </div>
+              <label for="textInput" class="is-hidden">Content to analyse</label>
+              <textarea id="textInput" class="text-input" placeholder="I-paste dito ang viral post, headline, o comment…&#10;&#10;Halimbawa: &quot;GRABE!!! Ayon sa isang source na hindi pinangalanan, may malaking iskandalo raw sa gobyerno. SHARE AGAD PARA MALAMAN NG LAHAT!!!&quot;"></textarea>
+              <div class="sample-row">
+                <span class="sample-label">Try a sample:</span>
+                <div class="sample-chips" id="sampleRow"></div>
+              </div>
+            </div>
+
+            <!-- IMAGE -->
+            <div class="tab-panel" id="panel-image" data-panel="image" role="tabpanel">
+              <div class="dropzone" id="dzImage">
+                <input type="file" id="fileImage" accept="image/png,image/jpeg,image/webp,image/gif" aria-label="Choose an image">
+                <div class="dz-icon" aria-hidden="true">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 15v3a2 2 0 002 2h12a2 2 0 002-2v-3"/></svg>
+                </div>
+                <h4>Drop an image, or click to browse</h4>
+                <p>Screenshots, memes, and photos from posts or group chats.</p>
+                <span class="formats">JPG · PNG · WebP · up to 25 MB</span>
+              </div>
+              <div class="preview" id="previewImage">
+                <div data-media></div>
+                <div class="preview-meta">
+                  <span class="preview-meta-items" id="previewMetaImage"></span>
+                  <button class="file-clear is-hidden" id="clearImage" type="button">Remove</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- VIDEO -->
+            <div class="tab-panel" id="panel-video" data-panel="video" role="tabpanel">
+              <div class="dropzone" id="dzVideo">
+                <input type="file" id="fileVideo" accept="video/mp4,video/webm,video/quicktime" aria-label="Choose a video">
+                <div class="dz-icon" aria-hidden="true">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 15v3a2 2 0 002 2h12a2 2 0 002-2v-3"/></svg>
+                </div>
+                <h4>Drop a video, or click to browse</h4>
+                <p>Short clips and reels are the most common deepfake format.</p>
+                <span class="formats">MP4 · WebM · MOV · up to 120 MB</span>
+              </div>
+              <div class="preview" id="previewVideo">
+                <div data-media></div>
+                <div class="preview-meta">
+                  <span class="preview-meta-items" id="previewMetaVideo"></span>
+                  <button class="file-clear is-hidden" id="clearVideo" type="button">Remove</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="run-row">
+              <button class="btn btn-primary" id="runBtn" type="button" disabled>
+                Analyse content
+                <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </button>
+              <button class="btn btn-ghost btn-sm" id="clearBtn" type="button">Reset</button>
+              <span class="hint">Press Ctrl + Enter to run. Files are read in this tab and never uploaded.</span>
+            </div>
+          </div>
+
+          <div class="analyzing" id="analyzing">
+            <div style="display:flex;align-items:center;gap:10px">
+              <span class="spinner"></span>
+              <b style="font-size:.9rem">Running signal checks…</b>
+            </div>
+            <div class="analysis-steps" id="analysisSteps"></div>
+          </div>
+        </section>
+
+        <!-- ---------------- RESULT ---------------- -->
+        <div class="sticky-col">
+          <section class="panel" id="resultWrap">
+            <div class="panel-head">
+              <h2>Analysis result</h2>
+              <span class="sub">0–100 risk</span>
+            </div>
+            <div class="result-empty" id="resultEmpty">
+              <div class="re-icon" aria-hidden="true">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6l7-3z"/><path d="M12 9v4M12 16h.01"/></svg>
+              </div>
+              <h3>No analysis yet</h3>
+              <p>Submit text or a media file, then press <strong>Analyse content</strong>. The verdict, risk score, and every contributing signal will appear here.</p>
+            </div>
+            <div class="result" id="result" role="region" aria-live="polite" aria-label="Analysis result"></div>
+          </section>
+
+          <div class="card" style="margin-top:16px">
+            <span class="card-tag">Score guide</span>
+            <div style="display:grid;gap:10px;margin-top:4px">
+              <div style="display:flex;align-items:center;gap:9px;font-size:.83rem">
+                <span class="badge authentic">0–39</span>
+                <span style="color:var(--muted)">Consistent with authentic content</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:9px;font-size:.83rem">
+                <span class="badge suspicious">40–64</span>
+                <span style="color:var(--muted)">Mixed signals — verify manually</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:9px;font-size:.83rem">
+                <span class="badge fake">65–100</span>
+                <span style="color:var(--muted)">Strong manipulation indicators</span>
+              </div>
+            </div>
+            <p style="margin-top:14px;font-size:.78rem;color:var(--muted)">
+              The score estimates manipulation risk, not truth. A high score means the content
+              <em>looks like</em> known misinformation patterns.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Under the hood</span>
+        <h2>Six signal families, <span class="serif">all</span> shown to you.</h2>
+        <p>The engine mirrors the feature families used in the related literature, so every number in a report can be traced back to a rule you can read.</p>
+      </div>
+      <div class="grid grid-3">
+        <article class="card reveal">
+          <span class="card-tag">01 · Lexical</span>
+          <h3>Sensationalism</h3>
+          <p>Density of clickbait vocabulary drawn from Filipino, Taglish and English social posts — <em>grabe</em>, <em>bistado</em>, <em>pasabog</em>, <em>shocking</em>.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-tag">02 · Structural</span>
+          <h3>Source attribution</h3>
+          <p>Presence of named agencies, attributed statements, quotations and links. Unnamed sources are the strongest single indicator of unverified content.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-tag">03 · Affective</span>
+          <h3>Emotional intensity</h3>
+          <p>Exclamation density, outrage vocabulary and sentiment spikes that push readers to share before thinking.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-tag">04 · Visual</span>
+          <h3>Formatting red flags</h3>
+          <p>ALL-CAPS ratio, repeated punctuation, emoji stacking and shortened-post patterns typical of engagement bait.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-tag">05 · Linguistic</span>
+          <h3>Hedging language</h3>
+          <p>Filipino evidential markers — <em>daw</em>, <em>umano</em>, <em>kuno</em> — and English hedges like <em>reportedly</em> and <em>allegedly</em>.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-tag">06 · Forensic</span>
+          <h3>Metadata &amp; provenance</h3>
+          <p>Container bytes, EXIF and C2PA blocks, editor signatures, generator fingerprints, geometry and bitrate profiles for media.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="index.html" aria-label="Totoo AI home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#F0B429" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3l7 3v6c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6l7-3z"/>
+              <path d="M9 12l2 2 4-4"/>
+            </svg>
+          </span>
+          <span class="brand-text">TOTOO<span>AI</span></span>
+        </a>
+        <p class="footer-about">
+          A research prototype for detecting fake news and deepfake content in Filipino
+          digital media. Built as a supplementary verification aid — never a replacement
+          for professional fact-checking.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="detector.html">Detector</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="index.html">Overview</a>
+      </div>
+      <div class="footer-col">
+        <h4>Research</h4>
+        <a href="about.html">The study</a>
+        <a href="references.html">References</a>
+        <a href="https://tsek.ph/" target="_blank" rel="noopener">Tsek.ph ↗</a>
+      </div>
+    </div>
+    <div class="footer-base">
+      <span>© <span data-year>2026</span> Totoo AI · Group 10 — Ledesma, Fellesco, Tampe</span>
+      <span class="proto">Heuristic prototype · Not a substitute for fact-checking</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/engine.js"></script>
+<script src="js/samples.js"></script>
+<script src="js/store.js"></script>
+<script src="js/main.js"></script>
+<script src="js/detector.js"></script>
+</body>
+</html>
