@@ -4,7 +4,9 @@ A web prototype for the study **"Development of an AI-Based System for Fake News
 
 Totoo AI screens Filipino, Taglish and English text, images and videos for misinformation and deepfake indicators, and returns a **0–100 risk score with the exact signals behind it**.
 
-**Live demo:** https://tamperhianjay16-arch.github.io/ai-fake-news-deepfake-detector/
+**Live demos:**
+- https://rjay-netizen.github.io/TAMPE-IT1R13/ — `TAMPE-IT1R13`
+- https://tamperhianjay16-arch.github.io/ai-fake-news-deepfake-detector/ — public mirror
 
 ---
 
