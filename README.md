@@ -56,7 +56,9 @@ totoo-ai/
 ├── js/
 │   ├── engine.js         detection engine (swappable interface)
 │   ├── samples.js        Filipino / Taglish demo posts
-│   ├── store.js          localStorage scan history
+│   ├── auth.js           demo accounts, sessions, header state
+│   ├── login.js          login page controller
+│   ├── store.js          localStorage scan history (per account)
 │   ├── main.js           shared UI behaviour
 │   ├── detector.js       detector page controller
 │   └── dashboard.js      dashboard page controller
@@ -83,9 +85,21 @@ TotooEngine.analyzeVideo(file)  // → { score, verdict, signals[], facts[] }
 
 The engine is a **transparent heuristic prototype**, not a trained neural network. It exists so the study's workflow, confidence reporting and evaluation interface can be demonstrated end-to-end. Replace the three functions above with calls to a hosted DistilBERT / CNN-LSTM / multimodal transformer and the rest of the site keeps working unchanged.
 
+## Demo authentication
+
+Dashboard access uses a **client-side demo login** — there is no server here, so it cannot be real security.
+
+- Passwords are salted and hashed with **PBKDF2-SHA256** (120,000 iterations) through the Web Crypto API; plain-text passwords are never stored.
+- Accounts live in this browser's `localStorage` (`totoo_ai_users_v1`); the session lives in `localStorage` or `sessionStorage` depending on *Keep me signed in*.
+- Visitors can create their own account on `login.html`. There is no preset password.
+- Only `dashboard.html` requires a session. The detector and every other page stay public.
+- Each account gets its own scan history (`totoo_ai_history_v1:<user id>`); guest scans stay under the original `totoo_ai_history_v1` key.
+
+> **Not production security.** Because everything runs in the browser, anyone with developer tools can bypass the session flag. Use Supabase, Firebase or a small API before storing real credentials.
+
 ## Privacy
 
-All analysis runs in the browser. Files are never uploaded. Scan history is stored in `localStorage` under `totoo_ai_history_v1` and can be cleared or exported as JSON from the dashboard.
+All analysis runs in the browser. Files are never uploaded. Scan history is stored in `localStorage` and can be cleared or exported as JSON from the dashboard. Signed-in histories are namespaced per account; guest scans stay under `totoo_ai_history_v1`.
 
 ## Disclaimer
 

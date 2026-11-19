@@ -6,12 +6,23 @@
 window.TotooStore = (function () {
   'use strict';
 
-  const KEY = 'totoo_ai_history_v1';
+  const BASE_KEY = 'totoo_ai_history_v1';
   const LIMIT = 60;
+
+  /* History is scoped per account when someone is signed in; guests keep
+     the original shared key so existing scans are never lost. */
+  function storageKey() {
+    try {
+      const user = window.TotooAuth && window.TotooAuth.currentUser();
+      return user ? BASE_KEY + ':' + user.id : BASE_KEY;
+    } catch (e) {
+      return BASE_KEY;
+    }
+  }
 
   function read() {
     try {
-      const raw = localStorage.getItem(KEY);
+      const raw = localStorage.getItem(storageKey());
       const parsed = raw ? JSON.parse(raw) : [];
       return Array.isArray(parsed) ? parsed : [];
     } catch (e) {
@@ -21,7 +32,7 @@ window.TotooStore = (function () {
 
   function write(list) {
     try {
-      localStorage.setItem(KEY, JSON.stringify(list.slice(0, LIMIT)));
+      localStorage.setItem(storageKey(), JSON.stringify(list.slice(0, LIMIT)));
       return true;
     } catch (e) {
       return false;
@@ -36,7 +47,7 @@ window.TotooStore = (function () {
   }
 
   function clear() {
-    try { localStorage.removeItem(KEY); } catch (e) { /* ignore */ }
+    try { localStorage.removeItem(storageKey()); } catch (e) { /* ignore */ }
   }
 
   function remove(id) {
@@ -56,5 +67,5 @@ window.TotooStore = (function () {
     return { total: total, fake: fake, suspicious: suspicious, authentic: authentic, avg: avg, riskShare: riskShare };
   }
 
-  return { list: read, add: add, clear: clear, remove: remove, stats: stats, KEY: KEY };
+  return { list: read, add: add, clear: clear, remove: remove, stats: stats, storageKey: storageKey };
 })();

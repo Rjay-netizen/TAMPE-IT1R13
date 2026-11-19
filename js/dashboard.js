@@ -10,6 +10,9 @@
 
   if (!Store) return;
 
+  const Auth = window.TotooAuth;
+  if (!Auth || !Auth.requireAuth()) return;
+
   const els = {
     total: $('#stTotal'),
     fake: $('#stFake'),
@@ -23,7 +26,8 @@
     body: $('#historyBody'),
     tableWrap: $('#tableWrap'),
     empty: $('#emptyState'),
-    mix: $('#scanMix')
+    mix: $('#scanMix'),
+    user: $('#workspaceUser')
   };
 
   const VERDICT_TEXT = {
@@ -178,6 +182,13 @@
     refresh();
     window.toast('Scan removed.');
   });
+
+  /* who is signed in */
+  const me = Auth.currentUser();
+  if (me && els.user) {
+    els.user.innerHTML = 'Signed in as <b>' + esc(me.name) + '</b> · ' + esc(me.email) +
+      ' — history saved to this account only.';
+  }
 
   refresh();
 })();

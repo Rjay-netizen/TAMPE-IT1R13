@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
+<body data-require-auth="true">
 
 <header class="site-header">
   <div class="wrap header-inner">
@@ -30,8 +30,9 @@
       <a href="dashboard.html" aria-current="page">Dashboard</a>
       <a href="about.html">The Study</a>
       <a href="references.html">References</a>
+      <span class="nav-auth" id="navAuth"></span>
     </nav>
-    <a class="btn btn-primary btn-sm nav-cta" href="detector.html">New scan</a>
+    <div class="auth-slot" id="authSlot"></div>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav"><span></span></button>
   </div>
 </header>
@@ -43,6 +44,7 @@
       <span class="eyebrow">Your workspace</span>
       <h1>Scan history &amp; <span class="serif">evaluation</span>.</h1>
       <p>Every analysis you run is stored only in this browser. Use this page to review verdicts, compare them against published benchmarks, and export the evidence.</p>
+          <p class="workspace-user" id="workspaceUser"></p>
     </div>
   </section>
 
@@ -229,6 +231,7 @@
   </div>
 </footer>
 
+<script src="js/auth.js"></script>
 <script src="js/store.js"></script>
 <script src="js/main.js"></script>
 <script src="js/dashboard.js"></script>
